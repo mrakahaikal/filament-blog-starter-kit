@@ -22,6 +22,8 @@ class PostCategoryResource extends Resource
 
     protected static string|BackedEnum|null $navigationIcon = Heroicon::OutlinedRectangleStack;
 
+    protected static ?string $recordTitleAttribute = 'name';
+
     public static function form(Schema $schema): Schema
     {
         return PostCategoryForm::configure($schema);
@@ -51,5 +53,15 @@ class PostCategoryResource extends Resource
             'view' => ViewPostCategory::route('/{record}'),
             'edit' => EditPostCategory::route('/{record}/edit'),
         ];
+    }
+
+    public static function getNavigationLabel(): string
+    {
+        return __('filament-blog.resource_nav_label_categories');
+    }
+
+    public static function getBreadcrumb(): string
+    {
+        return __('filament-blog.resource_breadcrumb_categories');
     }
 }

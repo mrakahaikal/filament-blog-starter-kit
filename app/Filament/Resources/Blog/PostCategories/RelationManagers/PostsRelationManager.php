@@ -39,9 +39,6 @@ class PostsRelationManager extends RelationManager
                 //
             ])
             ->headerActions([
-                Action::make('createPost')
-                    ->button()
-                    ->url(fn(): string => route('filament.admin.resources.blog.posts.create')),
                 AssociateAction::make(),
             ])
             ->recordActions([
@@ -54,6 +51,9 @@ class PostsRelationManager extends RelationManager
                     DissociateBulkAction::make(),
                     DeleteBulkAction::make(),
                 ]),
+                Action::make('createPost')
+                    ->button()
+                    ->url(fn(): string => route('filament.admin.resources.blog.posts.create')),
             ]);
     }
 }

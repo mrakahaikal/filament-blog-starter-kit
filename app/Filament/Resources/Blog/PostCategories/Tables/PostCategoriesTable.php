@@ -17,18 +17,23 @@ class PostCategoriesTable
         return $table
             ->columns([
                 TextColumn::make('name')
-                    ->label('Name')
+                    ->label(__('filament-blog.table_head_label_categories_name'))
+                    ->weight('bold')
                     ->searchable(),
-                TextColumn::make('slug'),
+                TextColumn::make('slug')
+                    ->label(__('filament-blog.table_head_label_categories_slug')),
                 TextColumn::make('posts_count')
+                    ->label(__('filament-blog.table_head_label_categories_post_count'))
                     ->badge()
                     ->counts('posts'),
                 TextColumn::make('created_at')
-                    ->dateTime()
+                    ->label(__('filament-blog.table_head_label_created_at'))
+                    ->dateTime('j F Y - H:i', env('APP_TIMEZONE', 'UTC'))
                     ->sortable()
                     ->toggleable(isToggledHiddenByDefault: true),
                 TextColumn::make('updated_at')
-                    ->dateTime()
+                    ->label(__('filament-blog.table_head_label_updated_at'))
+                    ->dateTime('j F Y - H:i', env('APP_TIMEZONE', 'UTC'))
                     ->sortable()
                     ->toggleable(isToggledHiddenByDefault: true),
 
@@ -45,7 +50,7 @@ class PostCategoriesTable
                     DeleteBulkAction::make(),
                 ]),
                 CreateAction::make()
-                    ->label('New Category')
+                    ->label(__('filament-blog.btn_label_new_categories'))
                     ->icon('heroicon-s-plus')
             ]);
     }

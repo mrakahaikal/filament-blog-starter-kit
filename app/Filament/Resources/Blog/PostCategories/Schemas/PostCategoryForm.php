@@ -14,17 +14,18 @@ class PostCategoryForm
         return $schema
             ->components([
                 TextInput::make('name')
-                    ->label('Name')
+                    ->label(__('filament-blog.input_label_categories_name'))
                     ->required()
                     ->unique('post_categories', 'name')
-                    ->placeholder('Category Name')
-                    ->helperText('The name is how it appears on your site.')
+                    ->placeholder(__('filament-blog.input_placeholder_categories_name'))
+                    ->helperText(__('filament-blog.categories_name_helper'))
                     ->live()
                     ->afterStateUpdated(fn(Set $set, $state) => $set('slug', Str::slug($state))),
                 TextInput::make('slug')
+                    ->label(__('filament-blog.input_label_categories_slug'))
                     ->required()
-                    ->placeholder('category-name')
-                    ->helperText('The “slug” is the URL-friendly version of the name. It is usually all lowercase and contains only letters, numbers, and hyphens.')
+                    ->placeholder(__('filament-blog.input_placeholder_categories_slug'))
+                    ->helperText(__('filament-blog.input_helper_categories_slug'))
             ])
             ->columns(1);
     }
