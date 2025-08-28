@@ -41,7 +41,7 @@ class Post extends Model
 
     public function categories(): BelongsToMany
     {
-        return $this->belongsToMany(PostCategory::class, 'category_posts', 'id', 'category_id');
+        return $this->belongsToMany(PostCategory::class, 'category_posts');
     }
 
     public function comments(): HasMany
@@ -51,7 +51,7 @@ class Post extends Model
 
     public function tags(): BelongsToMany
     {
-        return $this->belongsToMany(PostTag::class, 'tag_posts', 'id', 'tag_id');
+        return $this->belongsToMany(PostTag::class, 'tag_posts');
     }
 
     public function user(): BelongsTo

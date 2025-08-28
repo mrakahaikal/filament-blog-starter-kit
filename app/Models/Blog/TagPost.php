@@ -3,10 +3,9 @@
 namespace App\Models\Blog;
 
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\Relations\Pivot;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
-class TagPost extends Pivot
+class TagPost extends Model
 {
     /**
      * Properties that are mass assignable
@@ -14,7 +13,7 @@ class TagPost extends Pivot
      */
     protected $fillable = [
         'post_id',
-        'tag_id',
+        'post_tag_id',
     ];
 
     protected $casts = [

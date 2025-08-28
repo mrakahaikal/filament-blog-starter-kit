@@ -3,14 +3,13 @@
 namespace App\Models\Blog;
 
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\Relations\Pivot;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
-class CategoryPost extends Pivot
+class CategoryPost extends Model
 {
     protected $fillable = [
         'post_id',
-        'category_id',
+        'post_category_id',
     ];
 
     protected $casts = [

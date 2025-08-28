@@ -8,6 +8,7 @@ use Filament\Schemas\Schema;
 use Filament\Resources\Resource;
 use App\Models\Blog\PostCategory;
 use Filament\Support\Icons\Heroicon;
+use Illuminate\Database\Eloquent\Model;
 use App\Filament\Resources\Blog\PostCategories\Pages\EditPostCategory;
 use App\Filament\Resources\Blog\PostCategories\Pages\ViewPostCategory;
 use App\Filament\Resources\Blog\PostCategories\Pages\ListPostCategories;
@@ -63,5 +64,12 @@ class PostCategoryResource extends Resource
     public static function getBreadcrumb(): string
     {
         return __('filament-blog.resource_breadcrumb_categories');
+    }
+
+    public static function getGlobalSearchResultDetails(Model $record): array
+    {
+        return [
+            $record->slug,
+        ];
     }
 }
