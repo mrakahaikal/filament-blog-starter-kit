@@ -2,10 +2,14 @@
 
 namespace App\Filament\Resources\Blog\Posts\Tables;
 
+use App\Models\Blog\Post;
+use Filament\Tables\Table;
+use Illuminate\Support\Str;
+use Filament\Actions\EditAction;
 use Filament\Actions\BulkActionGroup;
 use Filament\Actions\DeleteBulkAction;
-use Filament\Actions\EditAction;
-use Filament\Tables\Table;
+use Filament\Tables\Columns\TextColumn;
+use Filament\Tables\Columns\ImageColumn;
 
 class PostsTable
 {
@@ -13,7 +17,30 @@ class PostsTable
     {
         return $table
             ->columns([
-                //
+                TextColumn::make('title')
+                    ->description(function (Post $record) {
+                        return Str::limit($record->sub_title, 40);
+                    })
+                    ->searchable()->limit(20),
+                TextColumn::make('status')
+                    ->badge()
+                    ->color(function ($state) {
+                        return $state->getColor();
+                    }),
+                ImageColumn::make('cover_photo_path')->label('Cover Photo'),
+
+                ImageColumn::make('user')
+                    ->circular()
+                    ->label('Author'),
+
+                TextColumn::make('created_at')
+                    ->dateTime()
+                    ->sortable()
+                    ->toggleable(isToggledHiddenByDefault: true),
+                TextColumn::make('updated_at')
+                    ->dateTime()
+                    ->sortable()
+                    ->toggleable(isToggledHiddenByDefault: true),
             ])
             ->filters([
                 //
