@@ -14,10 +14,8 @@ class PostTagForm
         return $schema
             ->components([
                 TextInput::make('name')
-                    ->live(true)->afterStateUpdated(fn(Set $set, ?string $state) => $set(
-                        'slug',
-                        Str::slug($state)
-                    ))
+                    ->live(onBlur: true, debounce: 300)
+                    ->afterStateUpdated(fn(Set $set, ?string $state) => $set('slug', Str::slug($state)))
                     ->unique('post_tags', 'name')
                     ->required()
                     ->maxLength(50),

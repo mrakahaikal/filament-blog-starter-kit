@@ -9,6 +9,7 @@ use App\Filament\Resources\Blog\PostTags\Schemas\PostTagForm;
 use App\Filament\Resources\Blog\PostTags\Tables\PostTagsTable;
 use App\Models\Blog\PostTag;
 use BackedEnum;
+use UnitEnum;
 use Filament\Resources\Resource;
 use Filament\Schemas\Schema;
 use Filament\Support\Icons\Heroicon;
@@ -18,7 +19,11 @@ class PostTagResource extends Resource
 {
     protected static ?string $model = PostTag::class;
 
-    protected static string|BackedEnum|null $navigationIcon = Heroicon::OutlinedRectangleStack;
+    protected static string|BackedEnum|null $navigationIcon = Heroicon::OutlinedTag;
+
+    protected static string|UnitEnum|null $navigationGroup = 'Blog';
+
+    protected static ?int $navigationSort = 3;
 
     public static function form(Schema $schema): Schema
     {
@@ -41,7 +46,6 @@ class PostTagResource extends Resource
     {
         return [
             'index' => ListPostTags::route('/'),
-            'create' => CreatePostTag::route('/create'),
             'edit' => EditPostTag::route('/{record}/edit'),
         ];
     }

@@ -18,9 +18,10 @@ class PostCategoryForm
                     ->required()
                     ->unique('post_categories', 'name')
                     ->placeholder(__('filament-blog.input_placeholder_categories_name'))
-                    ->helperText(__('filament-blog.categories_name_helper'))
+                    ->helperText(__('filament-blog.input_helper_categories_name'))
                     ->live()
                     ->afterStateUpdated(fn(Set $set, $state) => $set('slug', Str::slug($state))),
+
                 TextInput::make('slug')
                     ->label(__('filament-blog.input_label_categories_slug'))
                     ->required()

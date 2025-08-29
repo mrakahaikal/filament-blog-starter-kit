@@ -6,6 +6,7 @@ use App\Models\Blog\Post;
 use Filament\Tables\Table;
 use Illuminate\Support\Str;
 use Filament\Actions\EditAction;
+use Filament\Actions\ViewAction;
 use Filament\Actions\BulkActionGroup;
 use Filament\Actions\DeleteBulkAction;
 use Filament\Tables\Columns\TextColumn;
@@ -18,15 +19,13 @@ class PostsTable
         return $table
             ->columns([
                 TextColumn::make('title')
-                    ->description(function (Post $record) {
-                        return Str::limit($record->sub_title, 40);
-                    })
+                    ->description(fn(Post $record): ?string => Str::limit($record->sub_title, 40))
                     ->searchable()->limit(20),
+
                 TextColumn::make('status')
                     ->badge()
-                    ->color(function ($state) {
-                        return $state->getColor();
-                    }),
+                    ->color(fn($state): mixed => $state->getColor()),
+
                 ImageColumn::make('cover_photo_path')->label('Cover Photo'),
 
                 ImageColumn::make('user')
@@ -37,6 +36,7 @@ class PostsTable
                     ->dateTime()
                     ->sortable()
                     ->toggleable(isToggledHiddenByDefault: true),
+
                 TextColumn::make('updated_at')
                     ->dateTime()
                     ->sortable()
@@ -46,6 +46,7 @@ class PostsTable
                 //
             ])
             ->recordActions([
+                ViewAction::make(),
                 EditAction::make(),
             ])
             ->toolbarActions([

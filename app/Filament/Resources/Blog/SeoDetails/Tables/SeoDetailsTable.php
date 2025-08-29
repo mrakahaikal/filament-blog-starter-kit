@@ -16,15 +16,20 @@ class SeoDetailsTable
             ->columns([
                 TextColumn::make('post.title')
                     ->limit(20),
+
                 TextColumn::make('title')
                     ->limit(20)
                     ->searchable(),
-                TextColumn::make('keywords')->badge()
+
+                TextColumn::make('keywords')
+                    ->badge()
                     ->searchable(),
+
                 TextColumn::make('created_at')
                     ->dateTime()
                     ->sortable()
                     ->toggleable(isToggledHiddenByDefault: true),
+
                 TextColumn::make('updated_at')
                     ->dateTime()
                     ->sortable()
