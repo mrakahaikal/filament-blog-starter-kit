@@ -29,8 +29,9 @@ class PostsTable
                 ImageColumn::make('cover_photo_path')
                     ->label('Cover Photo'),
 
-                ImageColumn::make('user.avatar_url')
+                ImageColumn::make('author_avatar')
                     ->circular()
+                    ->visibility('public')
                     ->label('Author'),
 
                 TextColumn::make('created_at')

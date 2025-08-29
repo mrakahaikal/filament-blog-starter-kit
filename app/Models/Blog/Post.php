@@ -111,4 +111,9 @@ class Post extends Model
     {
         return Storage::url($this->cover_photo_path);
     }
+
+    public function getAuthorAvatarAttribute()
+    {
+        return Storage::url($this->user->avatar_url ?? null);
+    }
 }
