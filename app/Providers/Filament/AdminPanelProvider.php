@@ -67,7 +67,7 @@ class AdminPanelProvider extends PanelProvider
                         shouldRegisterNavigation: true, // Adds a main navigation item for the My Profile page (default = false)
                         navigationGroup: 'Settings', // Sets the navigation group for the My Profile page (default = null)
                         hasAvatars: true, // Enables the avatar upload form component (default = false)
-                        slug: 'my-profile' // Sets the slug for the profile page (default = 'my-profile')
+                        slug: 'settings/my-profile' // Sets the slug for the profile page (default = 'my-profile')
                     )
                     ->customMyProfilePage(AccountSettingsPage::class)
                     ->avatarUploadComponent(fn() => FileUpload::make('avatar_url')->label('Foto Profil')->avatar()->disk('public')->directory('profile-photos')->visibility('public'))

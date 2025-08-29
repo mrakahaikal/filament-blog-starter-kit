@@ -4,6 +4,7 @@ namespace App\Models;
 
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Filament\Panel;
+use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Storage;
 use Filament\Models\Contracts\HasAvatar;
 use Illuminate\Notifications\Notifiable;
@@ -23,6 +24,7 @@ class User extends Authenticatable implements FilamentUser, HasAvatar
      */
     protected $fillable = [
         'name',
+        'username',
         'email',
         'avatar_url',
         'password',
@@ -49,6 +51,27 @@ class User extends Authenticatable implements FilamentUser, HasAvatar
             'email_verified_at' => 'datetime',
             'password' => 'hashed',
         ];
+    }
+
+    public static function generateUsername(string $name): string
+    {
+        $separator = collect(['.', '_'])->random();
+
+        $baseUsername = Str::of($name)
+            ->lower()
+            ->replace([' '], $separator)
+            ->replaceMatches('/[^a-z0-9._]/', '')
+            ->__toString();
+
+        $username = $baseUsername;
+        $counter = 1;
+
+        while (static::query()->where('username', $username)->exists()) {
+            $username = "{$baseUsername}{$separator}{$counter}";
+            $counter++;
+        }
+
+        return $username;
     }
 
     public function canAccessPanel(Panel $panel): bool
