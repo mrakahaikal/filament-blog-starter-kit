@@ -28,7 +28,7 @@ class PostsRelationManager extends RelationManager
                 TextColumn::make('title')
                     ->searchable()
                     ->limit(40)
-                    ->description(fn(Post $record): string => Str::limit($record->sub_title)),
+                    ->description(fn(Post $record): ?string => Str::limit($record->sub_title)),
                 TextColumn::make('status')
                     ->badge()
                     ->color(fn($state): mixed => $state->getColor()),

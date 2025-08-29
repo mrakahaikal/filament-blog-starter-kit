@@ -46,7 +46,6 @@ class PostTagResource extends Resource
     {
         return [
             'index' => ListPostTags::route('/'),
-            'edit' => EditPostTag::route('/{record}/edit'),
         ];
     }
 }

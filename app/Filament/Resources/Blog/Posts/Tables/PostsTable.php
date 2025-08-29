@@ -26,9 +26,10 @@ class PostsTable
                     ->badge()
                     ->color(fn($state): mixed => $state->getColor()),
 
-                ImageColumn::make('cover_photo_path')->label('Cover Photo'),
+                ImageColumn::make('cover_photo_path')
+                    ->label('Cover Photo'),
 
-                ImageColumn::make('user')
+                ImageColumn::make('user.avatar_url')
                     ->circular()
                     ->label('Author'),
 

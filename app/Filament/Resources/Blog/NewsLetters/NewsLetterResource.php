@@ -9,6 +9,7 @@ use App\Filament\Resources\Blog\NewsLetters\Schemas\NewsLetterForm;
 use App\Filament\Resources\Blog\NewsLetters\Tables\NewsLettersTable;
 use App\Models\Blog\NewsLetter;
 use BackedEnum;
+use UnitEnum;
 use Filament\Resources\Resource;
 use Filament\Schemas\Schema;
 use Filament\Support\Icons\Heroicon;
@@ -18,7 +19,11 @@ class NewsLetterResource extends Resource
 {
     protected static ?string $model = NewsLetter::class;
 
-    protected static string|BackedEnum|null $navigationIcon = Heroicon::OutlinedRectangleStack;
+    protected static string|BackedEnum|null $navigationIcon = Heroicon::OutlinedNewspaper;
+
+    protected static string|UnitEnum|null $navigationGroup = 'Blog';
+
+    protected static ?int $navigationSort = 6;
 
     public static function form(Schema $schema): Schema
     {

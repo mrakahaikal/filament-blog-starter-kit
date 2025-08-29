@@ -23,12 +23,15 @@ class SeoDetailForm
                     ->searchable()
                     ->default(request('post_id') ?? '')
                     ->columnSpanFull(),
+
                 TextInput::make('title')
                     ->required()
                     ->maxLength(255)
                     ->columnSpanFull(),
+
                 TagsInput::make('keywords')
                     ->columnSpanFull(),
+
                 Textarea::make('description')
                     ->required()
                     ->maxLength(65535)
